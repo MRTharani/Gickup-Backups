@@ -1,4 +1,4 @@
-name: Gickup Workflow
+name: Gickup-Rclone Workflow
 on:
   workflow_dispatch:
   schedule:
@@ -11,11 +11,18 @@ jobs:
         uses: actions/checkout@v2
       - name: Create directory
         run: mkdir gickup
-      - name: Get config file
+      - name: Rclone Install
         run: |
-          wget -qq ${{ secrets.CONF }}
-      - name: GickUp docker
+          sudo -v ; curl https://rclone.org/install.sh | sudo bash
+      - name: Get config files
+        run: |
+          wget -qq ${{ secrets.CONF }} &&  wget -qq ${{ secrets.RCONF }}
+      - name: GickUp docker Pull
         run: |
            docker pull ghcr.io/cooperspencer/gickup
+      - name: GickUp Backup
+        run: |
            docker run -v $PWD/conf.yml:/gickup/conf.yml -v $PWD/backups:/backups/Github/ ghcr.io/cooperspencer/gickup
-
+      - name: Sync
+        run: |
+             rclone --config "rclone.conf" copy /backups/ GithubBackups: --transfers 100
