@@ -1,0 +1,21 @@
+name: Gickup Workflow
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  gickup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Create directory
+        run: mkdir gickup && cd gickup
+      - name: GickUp docker-compose.yml
+        run: wget https://raw.githubusercontent.com/cooperspencer/gickup/main/docker-compose.yml
+      - name: Create config file
+        run: |
+          wget -qq ${{ secrets.CONF }}
+      - name: Run Docker Compose
+        run: |
+          docker-compose up -d
