@@ -17,6 +17,8 @@ jobs:
       - name: GickUp docker
         run: |
            docker pull ghcr.io/cooperspencer/gickup
-           docker run -v $PWD/conf.yml:/gickup/conf.yml ghcr.io/cooperspencer/gickup
-
+           docker run -v $PWD/conf.yml:/gickup/conf.yml -v $PWD/backups:/backups/Github/ ghcr.io/cooperspencer/gickup
+      - name: See Backups
+        run: |
+              ls backups
 
