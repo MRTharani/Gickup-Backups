@@ -11,20 +11,15 @@ jobs:
         uses: actions/checkout@v2
       - name: Create directory
         run: mkdir gickup
-      - name: GickUp docker-compose.yml
-        run: wget https://raw.githubusercontent.com/cooperspencer/gickup/main/docker-compose.yml
-      - name: Create config file
+      - name: Get config file
         run: |
           wget -qq ${{ secrets.CONF }}
-      - name: Install Docker Compose
+      - name: Install Docker
         run: |
-          sudo apt install docker-compose -y
-      - name: Run Image 
+          sudo apt install docker.io -y
+      - name: GickUp docker
         run: |
-          docker-compose up -d
-      - name: View Binary
-        run: |
-            ls 
-      - name: Run Binary 
-        run: |
-          ls gickup
+           docker pull ghcr.io/cooperspencer/gickup
+           docker run -v $PWD/conf.yml:/gickup/conf.yml ghcr.io/cooperspencer/gickup
+
+
