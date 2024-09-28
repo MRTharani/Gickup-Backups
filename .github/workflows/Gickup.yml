@@ -19,6 +19,12 @@ jobs:
       - name: Install Docker Compose
         run: |
           sudo apt install docker-compose -y
-      - name: Run Docker Compose
+      - name: Run Image 
         run: |
           docker-compose up -d
+      - name: View Binary
+        run: |
+          ls
+      - name: Run Binary 
+        run: | 
+          ./gickup conf.yml
