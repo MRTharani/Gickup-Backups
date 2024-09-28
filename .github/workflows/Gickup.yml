@@ -14,9 +14,6 @@ jobs:
       - name: Get config file
         run: |
           wget -qq ${{ secrets.CONF }}
-      - name: Install Docker
-        run: |
-          sudo apt install docker.io -y
       - name: GickUp docker
         run: |
            docker pull ghcr.io/cooperspencer/gickup
