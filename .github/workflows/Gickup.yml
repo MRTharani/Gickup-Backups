@@ -10,7 +10,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Create directory
-        run: mkdir gickup && cd gickup
+        run: mkdir gickup
       - name: GickUp docker-compose.yml
         run: wget https://raw.githubusercontent.com/cooperspencer/gickup/main/docker-compose.yml
       - name: Create config file
@@ -24,7 +24,7 @@ jobs:
           docker-compose up -d
       - name: View Binary
         run: |
-          ls
+            ls 
       - name: Run Binary 
-        run: | 
-          ./gickup conf.yml
+        run: |
+          ls gickup
