@@ -16,6 +16,9 @@ jobs:
       - name: Create config file
         run: |
           wget -qq ${{ secrets.CONF }}
+      - name: Install Docker Compose
+        run: |
+          sudo apt install docker-compose -y
       - name: Run Docker Compose
         run: |
           docker-compose up -d
