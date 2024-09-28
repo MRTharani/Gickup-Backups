@@ -21,4 +21,5 @@ jobs:
       - name: See Backups
         run: |
               ls backups/github.com
+              du -h backups/github.com
 
