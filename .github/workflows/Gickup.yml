@@ -19,10 +19,10 @@ jobs:
           wget -qq ${{ secrets.CONF }} &&  wget -qq ${{ secrets.RCONF }}
       - name: GickUp docker Pull
         run: |
-           docker pull ghcr.io/cooperspencer/gickup
+           docker pull buddyspencer/gickup:ubuntu-dev
       - name: GickUp Backup
         run: |
-           docker run -v $PWD/conf.yml:/gickup/conf.yml -v $PWD/backups:/backups/Github/ ghcr.io/cooperspencer/gickup
+           docker run -v $PWD/conf.yml:/gickup/conf.yml -v $PWD/backups:/backups/Github/ buddyspencer/gickup:ubuntu-dev
       - name: Sync
         run: |
              rclone --config "rclone.conf" copy backups/github.com GithubBackups:Backups/Github-Repos --transfers 10
