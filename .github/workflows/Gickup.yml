@@ -22,7 +22,7 @@ jobs:
            docker pull buddyspencer/gickup:ubuntu-dev
       - name: GickUp Backup
         run: |
-           docker run -v $PWD/conf.yml:/gickup/conf.yml -v $PWD/backups:/backups/Github/ buddyspencer/gickup:ubuntu-dev
+           docker run -v $PWD/conf.yml:/gickup/conf.yml -v $PWD/backups:/backups/Github/ buddyspencer/gickup:ubuntu-dev > log.txt
       - name: Sync
         run: |
              rclone --config "rclone.conf" copy backups/ GithubBackups:Backups/GithubBackups --transfers 10
