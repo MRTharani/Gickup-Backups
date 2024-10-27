@@ -1,0 +1,18 @@
+name: Get the public IP of the GitHub runner
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get the public IP of the GitHub runner
+        id: runner-ip
+        #uses: rwaight/actions/utilities/public-ip@main # can use version specific or main
+        uses: rwaight/actions/utilities/public-ip@v1
+
+      - name: Print the public IP of the GitHub runner
+        run: |
+          echo ${{ steps.runner-ip.outputs.ipv4 }}
+          echo ${{ steps.runner-ip.outputs.ipv6 }}
