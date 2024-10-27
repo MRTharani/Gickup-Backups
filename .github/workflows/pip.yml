@@ -1,7 +1,7 @@
 name: Get the public IP of the GitHub runner
 
-on: push
-
+on:
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
